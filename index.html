@@ -268,7 +268,41 @@ cy.on('select', 'edge', function(event) {
           alert("Select an edge to delete.");
         }
       });
+// Function to toggle the menu visibility
+function toggleMenu() {
+    const menu = document.getElementById('menu');
+    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+}
 
+// Function to filter nodes and edges by selected classes
+function filterGraph() {
+    // Get selected classes
+    const checkboxes = document.querySelectorAll('#menu input[type="checkbox"]');
+    const selectedClasses = Array.from(checkboxes)
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.value);
+
+    // Hide all elements first
+    cy.elements().forEach(ele => ele.hide());
+
+    // Show nodes and edges that match the selected classes
+    cy.nodes().forEach(node => {
+        if (selectedClasses.some(cls => node.hasClass(cls))) {
+            node.show();
+        }
+    });
+
+    cy.edges().forEach(edge => {
+        if (selectedClasses.some(cls => edge.hasClass(cls))) {
+            // Show the edge only if both its source and target nodes are visible
+            const sourceVisible = edge.source().visible();
+            const targetVisible = edge.target().visible();
+            if (sourceVisible && targetVisible) {
+                edge.show();
+            }
+        }
+    });
+}
       document.getElementById("save").addEventListener("click", () => {
   const updatedData = {
     elements: cy.json().elements
