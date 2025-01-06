@@ -47,14 +47,13 @@
       <option value="Supports">Supports</option>
       <option value="Undermines">Undermines</option><option value="Money">Money</option><option value="Debt">Debt</option>
     </select>
-    <div>
-    <button onclick="toggleMenu()">Filter</button>
-    <div id="menu" style="display: none;">
-        <label><input type="checkbox" value="N010" checked> Type A</label><br>
-        <label><input type="checkbox" value="N020" checked> Type B</label><br>
-        <label><input type="checkbox" value="N030" checked> Type C</label>
-    </div>
-    </div>
+    <label for="nodeClass">Filter Edge Classes:</label>
+<select id="nodeClass" multiple>
+  <option value="N010">Type A</option>
+  <option value="N020">Type B</option>
+  <option value="N030">Type C</option>
+</select>
+<button onclick="filterEdges()">Apply Filter</button>
     <button id="addEdge">Add Edge</button>
     <button id="deleteEdge">Delete Edge</button>
     <button id="save">Save JSON</button>
@@ -271,42 +270,29 @@ cy.on('select', 'edge', function(event) {
         }
       });
       
-// Function to toggle the menu visibility
-function toggleMenu() {
-    const menu = document.getElementById('menu'); // Get the menu element
-    if (menu.style.display === 'none') {
-        menu.style.display = 'block'; // Show the menu
-    } else {
-        menu.style.display = 'none'; // Hide the menu
-    }
-}
 
-// Function to filter nodes and edges by selected classes
-function filterGraph() {
-    // Get selected classes
-    const checkboxes = document.querySelectorAll('#menu input[type="checkbox"]');
-    const selectedClasses = Array.from(checkboxes)
-        .filter(checkbox => checkbox.checked)
-        .map(checkbox => checkbox.value);
 
-    // Hide all elements first
+function filterNodes() {
+    // Get the <select> element
+    const select = document.getElementById('nodeClass');
+
+    // Get selected values
+    const selectedValues = Array.from(select.selectedOptions).map(option => option.value);
+
+    // Hide all nodes and edges
     cy.elements().forEach(ele => ele.hide());
 
-    // Show nodes and edges that match the selected classes
+    // Show nodes with selected classes
     cy.nodes().forEach(node => {
-        if (selectedClasses.some(cls => node.hasClass(cls))) {
+        if (selectedValues.some(value => node.hasClass(value))) {
             node.show();
         }
     });
 
+    // Show edges connected to visible nodes
     cy.edges().forEach(edge => {
-        if (selectedClasses.some(cls => edge.hasClass(cls))) {
-            // Show the edge only if both its source and target nodes are visible
-            const sourceVisible = edge.source().visible();
-            const targetVisible = edge.target().visible();
-            if (sourceVisible && targetVisible) {
-                edge.show();
-            }
+        if (edge.source().visible() && edge.target().visible()) {
+            edge.show();
         }
     });
 };
