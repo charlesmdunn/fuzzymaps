@@ -39,19 +39,20 @@
   <div id="cy"></div>
   <div id="info-panel"></div>
   <div id="controls">
-    <label for="nodeClass">N:</label>
-    <select id="nodeClass">
-      <option value="N010">Personal Notes</option>
-      <option value="N020">Work Notes</option>
-      <option value="N030">Other TMP</option>
-    </select>
-    <label for="edgeClass">E:</label>
+    
+    <label for="edgeClass"> :</label>
     <select id="edgeClass">
       <option value="Implies">Implies</option>
       <option value="Contradicts">Contradicts</option>
       <option value="Supports">Supports</option>
       <option value="Undermines">Undermines</option><option value="Money">Money</option><option value="Debt">Debt</option>
     </select>
+    <button onclick="toggleMenu()">Filter</button>
+    <div id="menu" style="display: none;">
+        <label><input type="checkbox" value="N010" checked> Type A</label><br>
+        <label><input type="checkbox" value="N020" checked> Type B</label><br>
+        <label><input type="checkbox" value="N030" checked> Type C</label>
+    </div>
     <button id="addEdge">Add Edge</button>
     <button id="deleteEdge">Delete Edge</button>
     <button id="save">Save JSON</button>
