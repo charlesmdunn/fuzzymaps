@@ -36,6 +36,7 @@
 </head>
 <body>
   <div id="cy"></div>
+  <div id="info-panel"></div>
   <div id="controls">
     <label for="edgeClass">Edge Class:</label>
     <select id="edgeClass">
@@ -77,7 +78,7 @@
 }, position:{"x":486.91818093588921,"y":847.76597565683164}, classes:"N010"}, { data: { id: "116N010", label: "put json in repo to map repo name to vault name?", confidence: 0.5
 }, position:{"x":521.2349922633623,"y":529.30552137011398}, classes:"N010"}, { data: { id: "117N010", label: "update by taking all md from repo and most recent download with matching name", confidence: 0.9
 }, position:{"x":618.4348145964484,"y":281.14708665367681}, classes:"N010"} ],
-         edges: [{locked:false,position:{x:0,y:0},grabbable:true,data:{id:"8d84256c-846c-4ae4-9000-2473490e3338",target:"010N010",source:"018N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Supports",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"55b63e09-bf53-4edb-ae83-15314982e3b6",target:"015N010",source:"020N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Implies",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"ae902d75-48cf-4e30-acb5-ca411fb7d4bc",target:"020N010",source:"024N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Implies",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"cd11979f-2a8c-44d5-a412-29f2257ed9f6",target:"023N010",source:"024N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Implies",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"45a01d3f-30a3-4aa9-8ae1-a65aec71fa50",target:"023N010",source:"022N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Implies",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"c84b1ac6-9eb0-42af-bf58-6a8db2747b96",target:"010N010",source:"022N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Implies",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"6f38ed1e-eaac-46c5-a5b4-388484f42cbf",target:"010N010",source:"023N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Implies",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{target:"024N010",id:"a91d138b-7f44-4703-a6e6-7df624ebf3d9",source:"015N020"},removed:false,selectable:true,selected:false,pannable:true,classes:"Money",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{target:"015N020",id:"26da29c9-2745-4002-bdf8-1a585b41c2e7",source:"024N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Debt",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{target:"023N010",id:"ba44b9a6-64d0-43b1-bc0d-c55082d7541f",source:"012N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Undermines",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{target:"023N010",id:"112c0698-3e6b-4a98-91c5-483817c3c636",source:"013N020"},removed:false,selectable:true,selected:false,pannable:true,classes:"Contradicts",group:"edges"}]
+         edges: [{locked:false,position:{x:0,y:0},grabbable:true,data:{id:"8d84256c-846c-4ae4-9000-2473490e3338",source:"018N010",target:"010N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Supports",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"55b63e09-bf53-4edb-ae83-15314982e3b6",source:"020N010",target:"015N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Implies",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"ae902d75-48cf-4e30-acb5-ca411fb7d4bc",source:"024N010",target:"020N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Implies",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"cd11979f-2a8c-44d5-a412-29f2257ed9f6",source:"024N010",target:"023N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Implies",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"45a01d3f-30a3-4aa9-8ae1-a65aec71fa50",source:"022N010",target:"023N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Implies",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"c84b1ac6-9eb0-42af-bf58-6a8db2747b96",source:"022N010",target:"010N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Implies",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"6f38ed1e-eaac-46c5-a5b4-388484f42cbf",source:"023N010",target:"010N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Implies",group:"edges"}]
         }
       };
       
@@ -205,6 +206,19 @@
         if (selectedNodes.length > 2) {
           selectedNodes.shift();
         }
+      });
+      cy.on('select', 'edge', function(event) {
+        const edge = event.target;
+        const description = edge.data('description');
+        document.getElementById('info-panel').innerHTML = description;
+      });
+      cy.on('tap', 'edge', function(event) {
+        const edge = event.target;
+        const currentDescription = edge.data('description') || '';
+        const newDescription = prompt('Enter a description for this edge:', currentDescription);
+        if (newDescription !== null) {
+        edge.data('description', newDescription);
+    }
       });
 
       document.getElementById("addEdge").addEventListener("click", () => {
