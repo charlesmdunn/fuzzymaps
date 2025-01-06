@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Personal Notes System.md",
+                "file": "N010 Personal Notes System.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Personal Notes System"
+              "title": "N010 Personal Notes System"
             }
           }
         ]
@@ -95,6 +95,7 @@
         "state": {
           "type": "backlink",
           "state": {
+            "file": "N010 Personal Notes System.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -145,6 +146,8 @@
   },
   "active": "beff629f301b352d",
   "lastOpenFiles": [
-    "Work Notes System.md"
+    "N020 Work Notes System.md",
+    "N010 Personal Notes System.md",
+    "README.md"
   ]
 }
