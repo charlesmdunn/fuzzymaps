@@ -36,6 +36,7 @@
 </head>
 <body>
   <div id="cy"></div>
+  <div id="info-panel"></div>
   <div id="controls">
     <label for="edgeClass">Edge Class:</label>
     <select id="edgeClass">
@@ -205,6 +206,19 @@
         if (selectedNodes.length > 2) {
           selectedNodes.shift();
         }
+      }); 
+cy.on('select', 'edge', function(event) {
+        const edge = event.target;
+        const description = edge.data('description');
+        document.getElementById('info-panel').innerHTML = description;
+      });
+      cy.on('tap', 'edge', function(event) {
+        const edge = event.target;
+        const currentDescription = edge.data('description') || '';
+        const newDescription = prompt('Enter a description for this edge:', currentDescription);
+        if (newDescription !== null) {
+        edge.data('description', newDescription);
+    }
       });
 
       document.getElementById("addEdge").addEventListener("click", () => {
