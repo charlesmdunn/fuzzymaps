@@ -41,7 +41,7 @@
     <select id="edgeClass">
       <option value="Implies">Implies</option>
       <option value="Supports">Supports</option>
-      <option value="Contradicts">Contradicts</option>
+      <option value="Undermines">Undermines</option><option value="Contradicts">Contradicts</option><option value="Money">Money</option><option value="Debt">Debt</option>
     </select>
     <button id="addEdge">Add Edge</button>
     <button id="deleteEdge">Delete Edge</button>
@@ -131,6 +131,42 @@
             style: {
                 'line-color': 'blue',
                 "target-arrow-color": "blue",
+                'target-arrow-shape': 'vee',
+                "curve-style": "bezier"
+            }
+            
+        },
+         {selector: ".Contradicts",
+            style: {
+                'line-color': 'orange',
+                "target-arrow-color": "orange",
+                'target-arrow-shape': 'vee',
+                "curve-style": "bezier"
+            }
+            
+        },
+         {selector: ".Undermines",
+            style: {
+                'line-color': 'yellow',
+                "target-arrow-color": "yellow",
+                'target-arrow-shape': 'vee',
+                "curve-style": "bezier"
+            }
+            
+        },
+        {selector: ".Money",
+            style: {
+                'line-color': 'green',
+                "target-arrow-color": "green",
+                'target-arrow-shape': 'vee',
+                "curve-style": "bezier"
+            }
+            
+        },
+         {selector: ".Debt",
+            style: {
+                'line-color': 'red',
+                "target-arrow-color": "red",
                 'target-arrow-shape': 'vee',
                 "curve-style": "bezier"
             }
