@@ -273,8 +273,12 @@ cy.on('select', 'edge', function(event) {
       
 // Function to toggle the menu visibility
 function toggleMenu() {
-    const menu = document.getElementById('menu');
-    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+    const menu = document.getElementById('menu'); // Get the menu element
+    if (menu.style.display === 'none') {
+        menu.style.display = 'block'; // Show the menu
+    } else {
+        menu.style.display = 'none'; // Hide the menu
+    }
 };
 
 // Function to filter nodes and edges by selected classes
