@@ -47,15 +47,14 @@
       <option value="Supports">Supports</option>
       <option value="Undermines">Undermines</option><option value="Money">Money</option><option value="Debt">Debt</option>
     </select>
-    <button onclick="toggleMenu()">Filter</button>
     <div>
+    <button onclick="toggleMenu()">Filter</button>
     <div id="menu" style="display: none;">
         <label><input type="checkbox" value="N010" checked> Type A</label><br>
         <label><input type="checkbox" value="N020" checked> Type B</label><br>
         <label><input type="checkbox" value="N030" checked> Type C</label>
     </div>
     </div>
-    <div id="cy" style="width: 100%; height: 600px;"></div>
     <button id="addEdge">Add Edge</button>
     <button id="deleteEdge">Delete Edge</button>
     <button id="save">Save JSON</button>
@@ -271,11 +270,12 @@ cy.on('select', 'edge', function(event) {
           alert("Select an edge to delete.");
         }
       });
+      
 // Function to toggle the menu visibility
 function toggleMenu() {
     const menu = document.getElementById('menu');
     menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
-}
+};
 
 // Function to filter nodes and edges by selected classes
 function filterGraph() {
