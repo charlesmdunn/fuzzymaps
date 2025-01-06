@@ -19,7 +19,7 @@
     }
     #controls {
   padding: 10px;
-  background: #f9f9f9;
+  background: #292421;
   position: fixed; /* Keep controls visible on smaller screens */
   bottom: 0;
   left: 0;
@@ -39,11 +39,18 @@
   <div id="cy"></div>
   <div id="info-panel"></div>
   <div id="controls">
-    <label for="edgeClass">Edge Class:</label>
+    <label for="nodeClass">N:</label>
+    <select id="nodeClass">
+      <option value="N010">Personal Notes</option>
+      <option value="N020">Work Notes</option>
+      <option value="N030">Other TMP</option>
+    </select>
+    <label for="edgeClass">E:</label>
     <select id="edgeClass">
       <option value="Implies">Implies</option>
+      <option value="Contradicts">Contradicts</option>
       <option value="Supports">Supports</option>
-      <option value="Undermines">Undermines</option><option value="Contradicts">Contradicts</option><option value="Money">Money</option><option value="Debt">Debt</option>
+      <option value="Undermines">Undermines</option><option value="Money">Money</option><option value="Debt">Debt</option>
     </select>
     <button id="addEdge">Add Edge</button>
     <button id="deleteEdge">Delete Edge</button>
