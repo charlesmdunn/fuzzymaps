@@ -39,9 +39,9 @@
   <div id="controls">
     <label for="edgeClass">Edge Class:</label>
     <select id="edgeClass">
-      <option value="class1">Class 1</option>
-      <option value="class2">Class 2</option>
-      <option value="class3">Class 3</option>
+      <option value="Implies">Imploes</option>
+      <option value="Supports">Supports</option>
+      <option value="Contradicts">Contradicts</option>
     </select>
     <button id="addEdge">Add Edge</button>
     <button id="deleteEdge">Delete Edge</button>
@@ -77,7 +77,7 @@
 }, position:{"x":486.91818093588921,"y":847.76597565683164}, classes:"N010"}, { data: { id: "116N010", label: "put json in repo to map repo name to vault name?", confidence: 0.5
 }, position:{"x":521.2349922633623,"y":529.30552137011398}, classes:"N010"}, { data: { id: "117N010", label: "update by taking all md from repo and most recent download with matching name", confidence: 0.9
 }, position:{"x":618.4348145964484,"y":281.14708665367681}, classes:"N010"} ],
-         edges: [{locked:false,position:{x:0,y:0},grabbable:true,data:{id:"8d84256c-846c-4ae4-9000-2473490e3338",source:"018N010",class:"class1",target:"010N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"55b63e09-bf53-4edb-ae83-15314982e3b6",source:"020N010",class:"class1",target:"015N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"ae902d75-48cf-4e30-acb5-ca411fb7d4bc",source:"024N010",class:"class2",target:"020N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"cd11979f-2a8c-44d5-a412-29f2257ed9f6",source:"024N010",class:"class2",target:"023N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"45a01d3f-30a3-4aa9-8ae1-a65aec71fa50",source:"022N010",class:"class2",target:"023N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"c84b1ac6-9eb0-42af-bf58-6a8db2747b96",source:"022N010",class:"class2",target:"010N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"6f38ed1e-eaac-46c5-a5b4-388484f42cbf",source:"023N010",class:"class2",target:"010N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"",group:"edges"}]
+         edges: [{locked:false,position:{x:0,y:0},grabbable:true,data:{id:"8d84256c-846c-4ae4-9000-2473490e3338",source:"018N010",target:"010N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Supports",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"55b63e09-bf53-4edb-ae83-15314982e3b6",source:"020N010",target:"015N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Implies",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"ae902d75-48cf-4e30-acb5-ca411fb7d4bc",source:"024N010",target:"020N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Implies",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"cd11979f-2a8c-44d5-a412-29f2257ed9f6",source:"024N010",target:"023N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Implies",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"45a01d3f-30a3-4aa9-8ae1-a65aec71fa50",source:"022N010",target:"023N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Implies",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"c84b1ac6-9eb0-42af-bf58-6a8db2747b96",source:"022N010",target:"010N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Implies",group:"edges"}, {locked:false,position:{x:0,y:0},grabbable:true,data:{id:"6f38ed1e-eaac-46c5-a5b4-388484f42cbf",source:"023N010",target:"010N010"},removed:false,selectable:true,selected:false,pannable:true,classes:"Implies",group:"edges"}]
         }
       };
       
@@ -115,13 +115,21 @@
             }
         },
         {
-            selector: "class1",
+            selector: ".Implies",
+            style: {
+                'line-color': 'black',
+                "target-arrow-color": "blue",
+                'target-arrow-shape': 'vee',
+                "curve-style": "bezier"
+            }},
+            {selector: ".Supports",
             style: {
                 'line-color': 'blue',
                 "target-arrow-color": "blue",
                 'target-arrow-shape': 'vee',
                 "curve-style": "bezier"
             }
+            
         }
     
         ],
@@ -166,8 +174,9 @@
             data: {
               source: selectedNodes[0],
               target: selectedNodes[1],
-              class: edgeClass
+              
             }
+            classes: edgeClass
           });
           selectedNodes = [];
         } else {
