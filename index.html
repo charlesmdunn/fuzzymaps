@@ -262,13 +262,11 @@ function filterNodes() {
     confidenceValue.textContent = threshold.toFixed(2);
 
     cy.batch(() => {
+        // Filter nodes based on both confidence and class criteria
         cy.nodes().forEach((node) => {
             const confidence = node.data("confidence");
-            const classes = node.classes().split(' ');
-
-            // Check if the node meets both the confidence and class criteria
             const meetsConfidence = confidence >= threshold;
-            const meetsClass = (selectedValues.some(cls => node.hasClass(cls)));
+            const meetsClass = selectedValues.some(cls => node.hasClass(cls));
 
             if (meetsConfidence && meetsClass) {
                 node.show();
@@ -277,7 +275,7 @@ function filterNodes() {
             }
         });
 
-        // Show edges only if both connected nodes are visible
+        // Show edges only if both source and target nodes are visible
         cy.edges().forEach((edge) => {
             const sourceVisible = edge.source().visible();
             const targetVisible = edge.target().visible();
