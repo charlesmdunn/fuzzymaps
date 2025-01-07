@@ -268,7 +268,7 @@ function filterNodes() {
 
             // Check if the node meets both the confidence and class criteria
             const meetsConfidence = confidence >= threshold;
-            const meetsClass = selectedValues.some(cls => classes.includes(cls));
+            const meetsClass = (selectedValues.some(cls => node.hasClass(cls)));
 
             if (meetsConfidence && meetsClass) {
                 node.show();
