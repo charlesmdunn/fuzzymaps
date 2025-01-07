@@ -220,8 +220,8 @@ document.getElementById("toggleLabels").addEventListener("click", () => {
                 .selector('node')
                 .style({
                     label: '', // Remove node labels
-                    'width': 'mapData(confidence, 0, 1, 8, 40)',
-                  'height': 'mapData(confidence, 0, 1, 8, 40)'
+                    'width': 'mapData(confidence, 0, 1, 8, 50)',
+                  'height': 'mapData(confidence, 0, 1, 8, 50)'
                 })
                 .selector('edge')
                 .style({
@@ -229,8 +229,8 @@ document.getElementById("toggleLabels").addEventListener("click", () => {
                     //'text-rotation': 'autorotate',  Rotate edge labels with the edge direction
                     'text-margin-y': -10, // Optional: Adjust the position of the edge label
                     color: '#fff', // Set edge label color
-                    'font-size': 12,
-                    'width': 8
+                    'font-size': 16,
+                    'width': 6
                 })
                 .update();
         } else {
