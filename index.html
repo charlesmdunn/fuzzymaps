@@ -56,7 +56,7 @@
     <button id="addEdge">Add Edge</button>
     <button id="deleteEdge">Delete Edge</button>
     <button id="save">Save JSON</button>
-    <label for="confidenceSlider">Confidence Filter:</label>
+
     <input type="range" id="confidenceSlider" min="0" max="1" step="0.01" value="0">
     <span id="confidenceValue">0.00</span>
     <button id="toggleLabels">Toggle Labels</button>
@@ -215,7 +215,7 @@ document.getElementById("toggleLabels").addEventListener("click", () => {
                 .selector('edge')
                 .style({
                     label: 'data(description)', // Show edge descriptions as labels
-                    'text-rotation': 'autorotate', // Rotate edge labels with the edge direction
+                    //'text-rotation': 'autorotate',  Rotate edge labels with the edge direction
                     'text-margin-y': -10, // Optional: Adjust the position of the edge label
                     color: '#fff', // Set edge label color
                     'font-size': 10
