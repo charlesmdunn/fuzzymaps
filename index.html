@@ -59,6 +59,7 @@
     <label for="confidenceSlider">Confidence Filter:</label>
     <input type="range" id="confidenceSlider" min="0" max="1" step="0.01" value="0">
     <span id="confidenceValue">0.00</span>
+    <button id="toggleLabels">Toggle Labels</button>
   </div>
 
   <script>
@@ -200,7 +201,44 @@
         layout: { name: "preset" }
       });
 
+let showNodeLabels = true; // Track the current state of the labels
 
+document.getElementById("toggleLabels").addEventListener("click", () => {
+    cy.batch(() => {
+        if (showNodeLabels) {
+            // Hide node labels and show edge labels
+            cy.style()
+                .selector('node')
+                .style({
+                    label: '' // Remove node labels
+                })
+                .selector('edge')
+                .style({
+                    label: 'data(description)', // Show edge descriptions as labels
+                    'text-rotation': 'autorotate', // Rotate edge labels with the edge direction
+                    'text-margin-y': -10, // Optional: Adjust the position of the edge label
+                    color: '#fff', // Set edge label color
+                    'font-size': 10
+                })
+                .update();
+        } else {
+            // Show node labels and hide edge labels
+            cy.style()
+                .selector('node')
+                .style({
+                    label: 'data(label)' // Restore node labels
+                })
+                .selector('edge')
+                .style({
+                    label: '' // Remove edge labels
+                })
+                .update();
+        }
+
+        // Toggle the label state
+        showNodeLabels = !showNodeLabels;
+    });
+});
 
       let selectedNodes = [];
       cy.on("tap", "node", (evt) => {
@@ -223,6 +261,7 @@ cy.on('select', 'edge', function(event) {
         const newDescription = prompt('Enter a description for this edge:', currentDescription);
         if (newDescription !== null) {
         edge.data('description', newDescription);
+        edge.data('id', newDescription);
     }
       });
 
