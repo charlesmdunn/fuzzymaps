@@ -99,7 +99,8 @@
            {
             selector: "node",
             style: {
-                'background-color': '#666',
+                'background-color': 'transparent',
+                'background-opacity': 0,
                 'width': 'mapData(confidence, 0, 1, 10, 50)',
                 'height': 'mapData(confidence, 0, 1, 10, 50)',
                 label: "data(label)" ,
@@ -111,6 +112,8 @@
             style: {
                 //'background-color': '#FFCCE3'
                'background-image': 'url(green_node.png)',
+                'background-color': 'transparent',
+                'background-opacity': 1,
                 'background-fit': 'cover'
             }
         },
@@ -119,6 +122,8 @@
             style: {
                  // 'background-color': '#E7D5B7'
                 'background-image': 'url(purple_node.png)',
+                'background-color': 'transparent',
+                'background-opacity': 1,
                 'background-fit': 'cover'
             }
         },
