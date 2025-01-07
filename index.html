@@ -77,7 +77,7 @@
 }, position:{"x":627.03726739996171,"y":-189.69151159997446}, classes:"N020"}, { data: { id: "010N010", label: "Use local Vault inside working copy app", confidence: 0.9
 }, position:{"x":-198.26690390751185,"y":58.748201355636226}, classes:"N010"}, { data: { id: "012N010", label: "Use blank template for initialization", confidence: 0.9
 }, position:{"x":591.75074975457846,"y":141.73783115823943}, classes:"N010"}, { data: { id: "013N010", label: "Only input label when visible", confidence: 0.9
-}, position:{x:38,y:121}, classes:"N010"}, { data: { id: "015N010", label: "automate push after initial json", confidence: 0.5
+}, position:{x:337,y:29}, classes:"N010"}, { data: { id: "015N010", label: "automate push after initial json", confidence: 0.5
 }, position:{"x":257.56177142654633,"y":-217.48148190071439}, classes:"N010"}, { data: { id: "018N010", label: "Use Action button to access list of github pages", confidence: 0.9
 }, position:{"x":-95.16389207859369,"y":401.77747446724328}, classes:"N010"}, { data: { id: "020N010", label: "Explore ways to automate finding the download", confidence: 0.9
 }, position:{"x":110.65194463939959,"y":-95.015078306043009}, classes:"N010"}, { data: { id: "021N010", label: "2 shortcuts, 1 for updating graph, 1 for viewing it", confidence: 0.8
@@ -281,7 +281,7 @@ cy.on('select', 'edge', function(event) {
         const currentDescription = edge.data('description') || '';
         if (!showNodeLabels) {
         const newDescription = prompt('Enter a description for this edge:', currentDescription);} else {
-          const newDescription = null;
+       const newDescription = currentDescription;
         }
         if (newDescription !== null) {
         edge.data('description', newDescription);
