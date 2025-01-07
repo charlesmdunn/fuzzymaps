@@ -68,7 +68,12 @@
         elements: {
           nodes: [
 
-{ data: { id: "010N020", label: "I need to be able to have AI act on my work programs", confidence: .9
+{ data: { id: "910N030", label: "", confidence: 0.8
+}, position:{x:307,y:82}, classes:"N030"}, { data: { id: "915N030", label: "", confidence: 0.8
+}, position:{x:111,y:594}, classes:"N030"}, { data: { id: "920N030", label: "", confidence: 0.8
+}, position:{x:153,y:85}, classes:"N030"}, { data: { id: "925N030", label: "", confidence: 0.8
+}, position:{x:142,y:248}, classes:"N030"}, { data: { id: "930N030", label: "", confidence: 0.8
+}, position:{x:241,y:598}, classes:"N030"}, { data: { id: "010N020", label: "I need to be able to have AI act on my work programs", confidence: .9
 }, position:{"x":822.16116739592746,"y":593.00324329618411}, classes:"N020"}, { data: { id: "011N020", label: "I can’t really scan text well enough to make transferring text back and forth reliable.", confidence: .9
 }, position:{"x":810.83740080897633,"y":679.63199187106284}, classes:"N020"}, { data: { id: "012N020", label: "Im not sure the policy on github or AI as of today.", confidence: .99
 }, position:{"x":600.95730486581101,"y":-20.359483968297397}, classes:"N020"}, { data: { id: "013N020", label: "having my notes and files separate will make documentation harder", confidence: 0.8
@@ -126,6 +131,16 @@
             style: {
                  // 'background-color': '#E7D5B7'
                 'background-image': 'url(images/yellow_node.png)',
+                'background-color': 'transparent',
+                'background-opacity': 1,
+                'background-fit': 'cover'
+            }
+        },
+        {
+            selector: ".N030",
+            style: {
+                 // 'background-color': '#E7D5B7'
+                'background-image': 'url(images/green_node2.png)',
                 'background-color': 'transparent',
                 'background-opacity': 1,
                 'background-fit': 'cover'
@@ -225,7 +240,7 @@ document.getElementById("toggleLabels").addEventListener("click", () => {
             cy.style()
                 .selector('node')
                 .style({
-                    label: '', // Remove node labels
+                    label: 'data(id)', // Remove node labels
                     'width': 'mapData(confidence, 0, 1, 8, 50)',
                   'height': 'mapData(confidence, 0, 1, 8, 50)'
                 })
