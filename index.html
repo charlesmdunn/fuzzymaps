@@ -101,8 +101,8 @@
             style: {
                 'background-color': 'transparent',
                 'background-opacity': 0,
-                'width': 'mapData(confidence, 0, 1, 10, 50)',
-                'height': 'mapData(confidence, 0, 1, 10, 50)',
+                'width': 'mapData(confidence, 0, 1, 10, 70)',
+                'height': 'mapData(confidence, 0, 1, 10, 70)',
                 label: "data(label)" ,
                 color: "white"
             }
@@ -219,7 +219,9 @@ document.getElementById("toggleLabels").addEventListener("click", () => {
             cy.style()
                 .selector('node')
                 .style({
-                    label: '' // Remove node labels
+                    label: '', // Remove node labels
+                    'width': 'mapData(confidence, 0, 1, 8, 40)',
+                  'height': 'mapData(confidence, 0, 1, 8, 40)'
                 })
                 .selector('edge')
                 .style({
@@ -227,7 +229,8 @@ document.getElementById("toggleLabels").addEventListener("click", () => {
                     //'text-rotation': 'autorotate',  Rotate edge labels with the edge direction
                     'text-margin-y': -10, // Optional: Adjust the position of the edge label
                     color: '#fff', // Set edge label color
-                    'font-size': 10
+                    'font-size': 12,
+                    'width': 8
                 })
                 .update();
         } else {
@@ -235,11 +238,14 @@ document.getElementById("toggleLabels").addEventListener("click", () => {
             cy.style()
                 .selector('node')
                 .style({
-                    label: 'data(label)' // Restore node labels
+                    label: 'data(label)', // Restore node labels
+                    'width': 'mapData(confidence, 0, 1, 10, 70)',
+                  'height': 'mapData(confidence, 0, 1, 10, 70)'
                 })
                 .selector('edge')
                 .style({
-                    label: '' // Remove edge labels
+                    label: '',// Remove edge labels
+                    'width': 3
                 })
                 .update();
         }
